@@ -1,24 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect } from 'react';
+import World from './World';
+import Login from './Login';
 
 function App() {
+  const [token, setToken] = useState('');
+  
+  const updateToken = (data) =>{
+    setToken(data);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {(token === '') ? <Login callBack={updateToken}/> : <World token={token}/>}
+    </>
   );
 }
 

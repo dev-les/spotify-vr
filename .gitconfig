@@ -1,0 +1,4 @@
+[url "https://"]
+	insteadOf = git://
+    insteadOf = ssh://
+    insteadOf = git+ssh://
