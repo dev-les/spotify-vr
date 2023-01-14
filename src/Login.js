@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Login(props) {
+function Login() {
     return (
         <div className="App">
             <header className="App-header">
@@ -10,10 +10,7 @@ function Login(props) {
                 </div>
             </header>
             <div className='main'>
-                <button onClick={() => 
-                    {
-                        props.callBack("Token")
-                    }}>Login with Spotify </button>
+                <button onClick={() => { window.location.href='/auth/login' }}>Login with Spotify </button>
             </div>
         </div>
     );

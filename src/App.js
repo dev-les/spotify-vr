@@ -7,12 +7,19 @@ import Login from './Login';
 function App() {
   const [token, setToken] = useState('');
   
-  const updateToken = (data) =>{
-    setToken(data);
-  }
+  useEffect(() => {
+    async function getToken() {
+      const response = await fetch('/auth/token');
+      const json = await response.json();
+      setToken(json.access_token);
+    }
+
+    getToken();
+  }, []);
+  
   return (
     <>
-      {(token === '') ? <Login callBack={updateToken}/> : <World token={token}/>}
+      {(token === '') ? <Login/> : <World token={token}/>}
     </>
   );
 }
