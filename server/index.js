@@ -28,12 +28,12 @@ app.get('/auth/login', (req, res) =>{
                  user-read-email \
                  user-read-private";
     var state = generateRandomString(16);
-
+    var spotify_redirect_uri = `${req.get('referer')}auth/callback`;
     var auth_query_parameter = new URLSearchParams({
         response_type: 'code',
         client_id: spotify_client_id,
         scope: scope,
-        redirect_uri: 'http://localhost:3000/auth/callback',
+        redirect_uri: spotify_redirect_uri,
         state: state
     });
 
@@ -51,7 +51,7 @@ app.get('/auth/callback', (req, res) =>{
         url: 'https://accounts.spotify.com/api/token',
         form: {
             code: code,
-            redirect_uri: 'http://localhost:3000/auth/callback',
+            redirect_uri: `${req.get('referer')}auth/callback`,
             grant_type: 'authorization_code'
         },
         headers: {
