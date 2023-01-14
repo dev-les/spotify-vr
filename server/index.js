@@ -22,6 +22,7 @@ var generateRandomString = (length) =>{
 }
 
 var app = express();
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.get('/auth/login', (req, res) =>{
     var scope = "streaming \
